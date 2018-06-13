@@ -60,7 +60,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func insertItem(){
-        print("Save Tapped")
+        print("SAVE TAPPED")
         let alert = UIAlertController(title: "Insert Item", message: nil, preferredStyle: .alert)
         alert.addTextField { (tf) in tf.placeholder = "Name" }
         alert.addTextField { (tf) in tf.placeholder = "Style" }
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     @IBAction func listItems() {
-        print("List Tapped")
+        print("LIST TAPPED")
         
         do {
             let items = try self.wardrobedb.prepare(self.wardrobe)
@@ -103,7 +103,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func update(){
-       print("Update Tapped")
+       print("UPDATE TAPPED")
         let alert = UIAlertController(title: "Update Item", message: nil, preferredStyle: .alert)
         alert.addTextField { (tf) in tf.placeholder = "Item ID" }
         alert.addTextField { (tf) in tf.placeholder = "Style" }
@@ -135,7 +135,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func delete(){
-        print("Delete Tapped")
+        print("DELETE TAPPED")
         let alert = UIAlertController(title: "Delete Item", message: nil, preferredStyle: .alert)
         alert.addTextField { (tf) in tf.placeholder = "Item ID" }
         let action = UIAlertAction (title: "Submit", style: .default) { (_) in
