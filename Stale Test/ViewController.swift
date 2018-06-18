@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     
     let id = Expression<Int64>("id")
     let name = Expression<String>("name")
+    let type = Expression<String>("type")
+    let color = Expression<String>("color")
     let style = Expression<String>("style")
     let weight = Expression<String>("weight")
     let pattern = Expression<String>("pattern")
@@ -29,6 +31,7 @@ class ViewController: UIViewController {
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let fileUrl = documentDirectory.appendingPathComponent("wardrobe").appendingPathExtension("sqlite3")
             let wardrobedb = try Connection(fileUrl.path)
+         //   let wardrobedb = try remove(fileUrl.path)
             self.wardrobedb = wardrobedb
         } catch {
             print(error)
@@ -46,6 +49,8 @@ class ViewController: UIViewController {
         let createTable = self.wardrobe.create { (table) in
             table.column(self.id, primaryKey: true)
             table.column(self.name)
+            table.column(self.type)
+            table.column(self.color)
             table.column(self.style)
             table.column(self.weight)
             table.column(self.pattern, defaultValue: "no")
@@ -63,21 +68,27 @@ class ViewController: UIViewController {
         print("SAVE TAPPED")
         let alert = UIAlertController(title: "Insert Item", message: nil, preferredStyle: .alert)
         alert.addTextField { (tf) in tf.placeholder = "Name" }
+        alert.addTextField { (tf) in tf.placeholder = "Type" }
+        alert.addTextField { (tf) in tf.placeholder = "Color" }
         alert.addTextField { (tf) in tf.placeholder = "Style" }
         alert.addTextField { (tf) in tf.placeholder = "Weight" }
         alert.addTextField { (tf) in tf.placeholder = "Pattern" }
         let action = UIAlertAction(title: "Submit", style: .default) { (_) in
             guard let name = alert.textFields?[0].text,
-                let style = alert.textFields?[1].text,
-                let weight = alert.textFields?[2].text,
-                let pattern = alert.textFields?[3].text
+                let type = alert.textFields?[1].text,
+                let color = alert.textFields?[2].text,
+                let style = alert.textFields?[3].text,
+                let weight = alert.textFields?[4].text,
+                let pattern = alert.textFields?[5].text
                 else { return }
             print(name)
+            print(type)
+            print(color)
             print(style)
             print(weight)
             print(pattern)
             
-        let insertItem = self.wardrobe.insert(self.name <- name, self.style <- style, self.weight <- weight, self.pattern <- pattern)
+        let insertItem = self.wardrobe.insert(self.name <- name, self.type <- type, self.color <- color, self.style <- style, self.weight <- weight, self.pattern <- pattern)
             
         do {
             try self.wardrobedb.run(insertItem)
@@ -95,7 +106,7 @@ class ViewController: UIViewController {
         do {
             let items = try self.wardrobedb.prepare(self.wardrobe)
             for item in items {
-                print("ItemID: \(item[self.id]), name: \(item[self.name]), style: \(item[self.style]), weight: \(item[self.weight]), pattern: \(item[self.pattern])")
+                print("ItemID: \(item[self.id]), name: \(item[self.name]), type: \(item[self.type]), color: \(item[self.color]), style: \(item[self.style]), weight: \(item[self.weight]), pattern: \(item[self.pattern])")
             }
         } catch {
             print(error)
@@ -106,18 +117,24 @@ class ViewController: UIViewController {
        print("UPDATE TAPPED")
         let alert = UIAlertController(title: "Update Item", message: nil, preferredStyle: .alert)
         alert.addTextField { (tf) in tf.placeholder = "Item ID" }
+        alert.addTextField { (tf) in tf.placeholder = "Type" }
+        alert.addTextField { (tf) in tf.placeholder = "Color" }
         alert.addTextField { (tf) in tf.placeholder = "Style" }
         alert.addTextField { (tf) in tf.placeholder = "Weight" }
         alert.addTextField { (tf) in tf.placeholder = "Pattern" }
         let action = UIAlertAction (title: "Submit", style: .default) { (_) in
             guard let itemIDString = alert.textFields?[0].text,
                 let itemID = Int64(itemIDString),
-                let style = alert.textFields?[1].text,
-                let weight = alert.textFields?[2].text,
-                let pattern = alert.textFields?[3].text
+                let type = alert.textFields?[1].text,
+                let color = alert.textFields?[2].text,
+                let style = alert.textFields?[3].text,
+                let weight = alert.textFields?[4].text,
+                let pattern = alert.textFields?[5].text
                 else { return }
             print(itemIDString)
      //     print(name)
+            print(type)
+            print(color)
             print(style)
             print(weight)
             print(pattern)
@@ -155,5 +172,4 @@ class ViewController: UIViewController {
     alert.addAction(action)
     present(alert, animated: true, completion: nil)
 }
-
 }
