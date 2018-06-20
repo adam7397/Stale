@@ -9,7 +9,7 @@
 import UIKit
 import SQLite
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var wardrobedb: Connection!
     
@@ -73,6 +73,9 @@ class ViewController: UIViewController {
         alert.addTextField { (tf) in tf.placeholder = "Style" }
         alert.addTextField { (tf) in tf.placeholder = "Weight" }
         alert.addTextField { (tf) in tf.placeholder = "Pattern" }
+     //   let addimage = UIAlertAction(title: "Add Photo", style: .default) { (_) in
+            
+    //    }
         let action = UIAlertAction(title: "Submit", style: .default) { (_) in
             guard let name = alert.textFields?[0].text,
                 let type = alert.textFields?[1].text,
@@ -172,4 +175,24 @@ class ViewController: UIViewController {
     alert.addAction(action)
     present(alert, animated: true, completion: nil)
 }
+    
+    func openCamera(sender: AnyObject) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera;
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func openPhotoLibraryButton(sender: AnyObject) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
 }
