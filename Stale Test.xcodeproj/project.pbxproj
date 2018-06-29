@@ -15,6 +15,7 @@
 		ED138C7A20CF4559009DCBCA /* Stale_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED138C7920CF4559009DCBCA /* Stale_TestTests.swift */; };
 		ED138C8520CF4559009DCBCA /* Stale_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED138C8420CF4559009DCBCA /* Stale_TestUITests.swift */; };
 		ED138CAB20CF47DB009DCBCA /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED138C9D20CF47C4009DCBCA /* SQLite.framework */; };
+		ED58C11220E453640064EC89 /* WardrobeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED58C11120E453640064EC89 /* WardrobeTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		ED138C8420CF4559009DCBCA /* Stale_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stale_TestUITests.swift; sourceTree = "<group>"; };
 		ED138C8620CF4559009DCBCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED138C9220CF47C4009DCBCA /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
+		ED58C11120E453640064EC89 /* WardrobeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				ED138C6B20CF4559009DCBCA /* Assets.xcassets */,
 				ED138C6D20CF4559009DCBCA /* LaunchScreen.storyboard */,
 				ED138C7020CF4559009DCBCA /* Info.plist */,
+				ED58C11120E453640064EC89 /* WardrobeTableViewController.swift */,
 			);
 			path = "Stale Test";
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED138C6720CF4557009DCBCA /* ViewController.swift in Sources */,
+				ED58C11220E453640064EC89 /* WardrobeTableViewController.swift in Sources */,
 				ED138C6520CF4557009DCBCA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
