@@ -8,6 +8,7 @@
 
 import UIKit
 import SQLite
+import Alamofire
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -105,7 +106,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     @IBAction func listItems() {
         print("LIST TAPPED")
-        
+        print(wardrobe.filter(id == 1))
+        print("this work or what")
         do {
             let items = try self.wardrobedb.prepare(self.wardrobe)
             for item in items {
@@ -172,9 +174,37 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 print(error)
             }
         }
-    alert.addAction(action)
-    present(alert, animated: true, completion: nil)
-}
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func python() -> Void {
+        let clothes = returncolumns()
+        print("This is in python thing \(clothes)")
+        print("PYTHON TAPPED")
+        
+        let parameters: Parameters = ["user": "larry"]
+        
+        Alamofire.request("bradfielda.pythonanywhere.com/mysite", method: .post, parameters: parameters).responseJSON { response in
+            if let json = response.result.value as? [String: AnyObject] {
+                print("JSON: \(json)")
+            }
+        }
+        
+    }
+    
+    func returncolumns() -> Array<String> {
+        print("RETURNING")
+        var namearray = [String]()
+        do {
+            for wardrobe in try wardrobedb.prepare(wardrobe.select(name)) {
+                namearray.append(wardrobe[name])
+            }
+        } catch {
+            print("This no worko \(error)")
+        }
+        return namearray
+    }
     
     func openCamera(sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {

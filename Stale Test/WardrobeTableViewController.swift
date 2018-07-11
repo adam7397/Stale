@@ -9,13 +9,15 @@
 import UIKit
 
 class WardrobeTableViewController: UITableViewController {
-
-    var clothes = ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
-                   "Clementine", "Coconut", "Cranberry", "Fig", "Grape", "Grapefruit",
-                   "Kiwi fruit", "Lemon", "Lime", "Lychee", "Mandarine", "Mango",
-                   "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
-                   "Pear", "Pineapple", "Raspberry", "Strawberry"]
-
+    
+    var clothes = ViewController().returncolumns()
+   /**
+        ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
+        "Clementine", "Coconut", "Cranberry", "Fig", "Grape", "Grapefruit",
+        "Kiwi fruit", "Lemon", "Lime", "Lychee", "Mandarine", "Mango",
+        "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
+        "Pear", "Pineapple", "Raspberry", "Strawberry"]
+    **/
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
