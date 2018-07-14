@@ -179,13 +179,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func python() -> Void {
-        let clothes = returncolumns()
-        print("This is in python thing \(clothes)")
+       // let clothes = returncolumns()
+       // print("This is in python thing \(clothes)")
         print("PYTHON TAPPED")
-        
+        /**
+        Alamofire.request("http://bradfielda.pythonanywhere.com").response { response in
+            print("Request: \(response.request)")
+            print("Response: \(response.response)")
+            print("Error: \(response.error)")
+            
+            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                print("Data: \(utf8Text)")
+            }
+        }
+        **/
         let parameters: Parameters = ["user": "larry"]
         
-        Alamofire.request("bradfielda.pythonanywhere.com/mysite", method: .post, parameters: parameters).responseJSON { response in
+        Alamofire.request("http://bradfielda.pythonanywhere.com/api/get_messages", method: .post, parameters: parameters).responseJSON { response in
+            print("Request: \(response.request)")
+            print("Response: \(response.response)")
+            print("Error: \(response.error)")
+            
             if let json = response.result.value as? [String: AnyObject] {
                 print("JSON: \(json)")
             }
