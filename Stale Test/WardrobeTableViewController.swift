@@ -10,7 +10,9 @@ import UIKit
 
 class WardrobeTableViewController: UITableViewController {
     
-    var clothes = ViewController().returncolumns()
+    var clothes = [String]()
+    
+        //ViewController().returncolumns()
    /**
         ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
         "Clementine", "Coconut", "Cranberry", "Fig", "Grape", "Grapefruit",

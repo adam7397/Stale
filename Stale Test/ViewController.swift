@@ -183,7 +183,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
        // print("This is in python thing \(clothes)")
         print("PYTHON TAPPED")
         /**
-        Alamofire.request("http://bradfielda.pythonanywhere.com").response { response in
+        Alamofire.request("http://bradfielda.pythonanywhere.com/yahoo").response { response in
             print("Request: \(response.request)")
             print("Response: \(response.response)")
             print("Error: \(response.error)")
@@ -195,12 +195,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         **/
         let parameters: Parameters = ["user": "larry"]
         
-        Alamofire.request("http://bradfielda.pythonanywhere.com/api/get_messages", method: .post, parameters: parameters).responseJSON { response in
-            print("Request: \(response.request)")
-            print("Response: \(response.response)")
-            print("Error: \(response.error)")
+        Alamofire.request("http://bradfielda.pythonanywhere.com/testpost", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+            print("Request: \(String(describing: response.request))")
+            print("Response: \(String(describing: response.response))")
+            print("Error: \(String(describing: response.error))")
             
-            if let json = response.result.value as? [String: AnyObject] {
+            if let json = response.result.value as? [String: AnyObject]{
                 print("JSON: \(json)")
             }
         }
@@ -218,6 +218,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             print("This no worko \(error)")
         }
         return namearray
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "wardrobemove" {
+  //          if let destinationVC = segue.destination as? WardrobeTableViewController {
+                WardrobeTableViewController().clothes = returncolumns()
+  //           }
+        }
     }
     
     func openCamera(sender: AnyObject) {
